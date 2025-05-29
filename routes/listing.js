@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
-const { isLoggedIN, isOwner, validateListing } = require("../middleware.js");
+const { isLoggedIN, isOwner, validateListing } = require("../middleware/middleware.js");
 const listingController = require("../controllers/listing.controller.js");
 const multer = require("multer");
-const { storage } = require("../cloud.config.js");
+const { storage } = require("../config/cloud.config.js");
 const upload = multer({ storage });
 
+// Main routes
 router
   .route("/")
   .get(wrapAsync(listingController.index))
@@ -18,9 +19,17 @@ router
     wrapAsync(listingController.createRoute)
   );
 
-// new route
+// Category filter route
+router.get("/category/:category", wrapAsync(listingController.index));
+
+// New listing route
 router.get("/new", isLoggedIN, listingController.newRoute);
 
+// Search route (must be before /:id)
+router.get("/search", wrapAsync(listingController.searchListings));
+router.get("/search/suggestions", wrapAsync(listingController.getSearchSuggestions));
+
+// Individual listing routes
 router
   .route("/:id")
   .get(wrapAsync(listingController.showRoute))
@@ -33,7 +42,7 @@ router
   )
   .delete(isLoggedIN, isOwner, wrapAsync(listingController.deleteRoute));
 
-// eidt routr
+// Edit listing route
 router.get(
   "/:id/edit",
   isLoggedIN,

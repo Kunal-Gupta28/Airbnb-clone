@@ -2,16 +2,22 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
-const { saveRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl } = require("../middleware/middleware.js");
 const userController = require("../controllers/user.controller.js");
 
+// Root route
+router.get("/", (req, res) => {
+    res.redirect("/listing");
+});
 
+// signup route
 router
   .route("/signup")
   .get(userController.renderSignupForm)
   .post(wrapAsync(userController.signUp)
 );
 
+// login route
 router
   .route("/login")
   .get(userController.renderLoginForm)
@@ -24,6 +30,7 @@ router
     wrapAsync(userController.login)
 );
 
+// logout route
 router.get("/logout", userController.logout);
 
 module.exports = router;

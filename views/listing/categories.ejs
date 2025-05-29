@@ -1,0 +1,16 @@
+<div class="filter-section shadow-sm rounded-4" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); width: 100vw; margin-left: 50%; transform: translateX(-50%);">
+        <div class="category-filter">
+            <div class="d-flex flex-wrap justify-content-evenly">
+                <a href="/listing" 
+                   class="category-badge <%= !selectedCategory || selectedCategory === 'all' ? 'active' : '' %>">
+                    <i class="fas fa-th-large me-2"></i>All Categories
+                </a>
+                <% categories.forEach(category => { %>
+                    <a href="/listing/category/<%= category %>" 
+                       class="category-badge <%= selectedCategory === category ? 'active' : '' %>">
+                        <i class="fas fa-tag me-2"></i><%= category %>
+                    </a>
+                <% }); %>
+            </div>
+        </div>
+</div> 

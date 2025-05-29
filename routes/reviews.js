@@ -6,7 +6,7 @@ const {
   validateReview,
   isLoggedIN,
   isReviewAuthor,
-} = require("../middleware.js");
+} = require("../middleware/middleware.js");
 
 // reviews
 router.post(

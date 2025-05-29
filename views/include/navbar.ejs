@@ -1,66 +1,179 @@
-
-
 <style>
-  #search-btn{
-    background-color:#fe424d;
-    color:white;
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
-  }
-  #search-btn:hover{
-    background-color:#fe424d;
-    color:white;
-  }
-  #search-inp{
-    border-radius: 20px;
-    padding: 0.5rem 3rem;
-  }
+    #search-btn {
+        background-color: #fe424d;
+        color: white;
+        border-radius: 20px;
+        padding: 0.3rem 1rem;
+        border: none;
+        font-size: 0.95rem;
+    }
+    #search-btn:hover {
+        background-color: #e63a44;
+        color: white;
+    }
+    #search-inp {
+        border-radius: 20px;
+        padding: 0.3rem 1.5rem;
+        border: 1px solid #ddd;
+        font-size: 0.95rem;
+    }
+    .navbar {
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.25rem !important;
+        min-height: 48px;
+    }
+    .navbar-brand i {
+        color: #fe424d;
+        font-size: 1.3rem;
+    }
+    .nav-link {
+        color: #484848;
+        font-weight: 500;
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.25rem !important;
+        font-size: 1rem;
+    }
+    .nav-link:hover {
+        color: #fe424d;
+        background: #f8f9fa;
+    }
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 0.5rem;
+    }
+    .dropdown-item {
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #484848;
+        transition: all 0.2s ease;
+    }
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+        color: #fe424d;
+    }
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+    }
+    .dropdown-divider {
+        margin: 0.5rem 0;
+    }
+    .user-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.5rem;
+    }
+    .user-info {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 0.5rem;
+    }
+    .user-name {
+        font-weight: 500;
+        color: #484848;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    .user-email {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.8rem;
+    }
 </style>
 
-<nav class="navbar navbar-expand-md navbar-light border-bottom sticky-top" >
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar-light border-bottom sticky-top">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand" href="/listing">
+                <i class="fa-solid fa-compass"></i> Wanderlust
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
-
-      <div class="d-flex">
-        <a class="navbar-brand m-3" href="/listing"><i class="fa-solid fa-compass"></i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-  
-  
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="/listing">Explore</a>
-          </div>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/listing">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/listing/new">Airbnb your home</a>
+                </li>
+            </ul>
+
+            <form class="d-flex me-3" action="/listing/search" method="GET">
+                <div class="position-relative w-100">
+                    <input id="search-inp" class="form-control me-2" type="search" name="q" placeholder="Search destination" aria-label="Search" autocomplete="off">
+                    <div id="search-suggestions" class="list-group position-absolute w-100" style="z-index: 1050; display: none;"></div>
+                </div>
+                <button id="search-btn" class="btn" type="submit">Search</button>
+            </form>
+
+            <div class="navbar-nav">
+                <% if (!currUser) { %>
+                    <a class="nav-link" href="/signup">Sign up</a>
+                    <a class="nav-link" href="/login">Log in</a>
+                <% } else { %>
+                    <a class="nav-link text-danger" href="/logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                <% } %>
+            </div>
         </div>
-      </div>
-
-      <div class="navbar-nav">
-        <form class="d-flex">
-          <input id="search-inp" class="form-control me-2 " type="search" placeholder="Search destination">
-          <button id="search-btn" class="btn btn-outline-success" type="submit">Search</button>
-        </form>  
-      </div>
-
-      <div class="m-5">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listing/new">Airbnb your home</a>
-
-          <% if (!currUser) { %>
-            <a class="nav-link" aria-current="page" href="/Signup"><b>Signup</b></a>
-            <a class="nav-link" href="/Login"><b>Login</b></a>
-          <% } %>
-        
-          <% if (currUser) { %>
-            <a class="nav-link" href="/Logout">Logout</a>
-          <% } %>
-
-        </div>
-      </div>
-
-
-
-
     </div>
 </nav>
+
+<script>
+const searchInp = document.getElementById('search-inp');
+const suggestionsBox = document.getElementById('search-suggestions');
+
+searchInp.addEventListener('input', async function() {
+  const query = this.value.trim();
+  if (!query) {
+    suggestionsBox.style.display = 'none';
+    suggestionsBox.innerHTML = '';
+    return;
+  }
+  const res = await fetch(`/listing/search/suggestions?q=${encodeURIComponent(query)}`);
+  const suggestions = await res.json();
+  if (suggestions.length === 0) {
+    suggestionsBox.style.display = 'none';
+    suggestionsBox.innerHTML = '';
+    return;
+  }
+  suggestionsBox.innerHTML = suggestions.map(s =>
+    `<div class="list-group-item">${s.title} <small class="text-muted">${s.location}</small></div>`
+  ).join('');
+  suggestionsBox.style.display = 'block';
+});
+
+// Handle click on suggestion
+suggestionsBox.addEventListener('click', function(e) {
+  const item = e.target.closest('.list-group-item');
+  if (item) {
+    // The title is always the first child node (text node)
+    const title = item.childNodes[0].textContent.trim();
+    searchInp.value = title;
+    suggestionsBox.style.display = 'none';
+    searchInp.form.submit();
+  }
+});
+
+// Hide suggestions on blur (with a slight delay for click)
+searchInp.addEventListener('blur', () => setTimeout(() => suggestionsBox.style.display = 'none', 150));
+searchInp.addEventListener('focus', () => {
+  if (suggestionsBox.innerHTML.trim()) suggestionsBox.style.display = 'block';
+});
+</script>

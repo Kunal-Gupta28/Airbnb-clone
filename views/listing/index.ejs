@@ -1,110 +1,63 @@
 <% layout('/layout/boilerplate')-%>
 
-<style>
-    .height{
-        height: 60px;
-    }
-    .tax-info{
-        display: none;
-    }
-</style>
-
-
-<div class="row mt-3">
-    <div class="col-12">
-<div class="d-flex fs-6 ">
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-ticket"></i></div>
-        <p>iconic</p>
-    </div>
-    <div class="filter text-center m-3">
-        <div> <i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing pool</p>  
-    </div>     
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-mountain-sun"></i></div>
-        <p>Amazing view</p>
-    </div>
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-tractor"></i></div>
-        <p>Farms</p>  
-    </div>     
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-house"></i></div>
-        <p>Tiny homes</p>
-    </div>
-    <div class="filter text-center m-3">
-        <div><i class="fa-regular fa-face-surprise"></i></div>
-        <p>OMG!</p>  
-    </div>     
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-warehouse"></i></div>
-        <p>Treehouse</p>
-    </div>
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-umbrella-beach"></i></div>
-        <p>Beach</p>  
-    </div>     
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-golf-ball-tee"></i></div>
-        <p>Golf</p>
-    </div>
-    <div class="filter text-center m-3">
-        <div> <i class="fa-solid fa-bed"></i></div>
-        <p>Room</p>  
-    </div>     
-    <div class="filter text-center m-3">
-        <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
-    </div>   
-    
-
-    <div class="height border rounded d-flex align-items-center p-1">
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+<div class="container pt-0 mt-0" style="padding-top:0 !important; margin-top:0 !important;">
+    <!-- Category Filter Section -->
+    <%- include("categories.ejs") %>
+    <% if (allListings.length === 0) { %>
+        <div class="no-results">
+            <i class="fas fa-home"></i>
+            <h3 class="mb-3">No Listings Found</h3>
+            <p class="text-muted mb-4">No listings available in this category yet.</p>
+            <a href="/listing" class="btn btn-primary">
+                <i class="fas fa-home me-2"></i>Browse All Listings
+            </a>
         </div>
-    </div>
-
-</div>
-</div>
-</div>
-
-
-
-    <div class="row  row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 px-5">
-
-        
-        <%for(let list of allListings){%>
-            <a href="/listing/<%=list._id%>" class="text-decoration-none">
-                <div class="card">
-                    <img src="<%=list.image%>>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-                    <div class="card-img-overlay"></div>
-                 
-                    <div class="card-body">
-                    <h5 class="card-title"><b><%=list.title%></b>
-                        <br>
-                        &#8377;<%=list.price.toLocaleString("en-IN")%> / night   &#8377;<i class="tax-info"> +18%GST</i></h5>
+    <% } else { %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% allListings.forEach((listing) => { %>
+                <div class="col">
+                    <div class="card listing-card h-100">
+                        <div class="position-relative">
+                            <img src="<%= listing.image.url %>" class="card-img-top listing-image" alt="<%= listing.title %>">
+                            <div class="listing-badge">
+                                <i class="fas fa-star me-1"></i><%= listing.rating || 'New' %>
+                            </div>
+                            <div class="listing-category">
+                                <i class="fas fa-tag me-1"></i><%= listing.category %>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-3"><%= listing.title %></h5>
+                            <p class="listing-location mb-3">
+                                <i class="fas fa-map-marker-alt me-2"></i><%= listing.location %>, <%= listing.country %>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="listing-price">₹ <%= listing.price %>/night</span>
+                                <a href="/listing/<%= listing._id %>" class="btn btn-outline-primary">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
-        <%}%>
-    </div>
+            <% }); %>
+        </div>
+    <% } %>
+</div>
 
-</body>
-
-
-<script> 
+<script>
+// Tax info toggle
 let taxSwitch = document.getElementById("flexSwitchCheckDefault");
-taxSwitch.addEventListener("click",()=>{
-  let taxinfo =  document.getElementsByClassName("tax-info");
-    for(let info of taxinfo){
-        if(info.style.display !="inline"){
-        info.style.display="inline";
-        }else{
-            info.style.display="none";
+if (taxSwitch) {
+    taxSwitch.addEventListener("click", () => {
+        let taxinfo = document.getElementsByClassName("tax-info");
+        for (let info of taxinfo) {
+            if (info.style.display != "inline") {
+                info.style.display = "inline";
+            } else {
+                info.style.display = "none";
+            }
         }
-
-    }
-})
+    });
+}
 </script>

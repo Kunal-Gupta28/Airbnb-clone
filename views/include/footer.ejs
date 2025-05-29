@@ -1,15 +1,36 @@
-<footer>
-    <div class="f-info d-flex align-items-center flex-column">
-
-        <div class="f-info-social width">
-            <i class=" m-2 fa-brands fa-square-facebook"></i>
-            <i class=" m-2 fa-brands fa-square-instagram"></i>
-            <i class=" m-2 fa-brands fa-linkedin"></i>
+<footer class="bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Wanderlust</h5>
+                <p>Find your perfect stay with us.</p>
+                <div class="social-links">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="text-light">About Us</a></li>
+                    <li><a href="/contact" class="text-light">Contact</a></li>
+                    <li><a href="/privacy" class="text-light">Privacy Policy</a></li>
+                    <li><a href="/terms" class="text-light">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Newsletter</h5>
+                <p>Subscribe to get updates on new listings.</p>
+                <form class="d-flex">
+                    <input type="email" class="form-control me-2" placeholder="Enter your email">
+                    <button class="btn btn-outline-light" type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
-        <div class="width">&copy; wanderlust Private Limited</div>
-        <div class="f-info-links width">
-            <a href="/privacy" class="text-decoration-none">Privacy</a>
-            <a href="/terms" class="text-decoration-none">Terms</a>
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0">&copy; <%= new Date().getFullYear() %> Wanderlust. All rights reserved.</p>
         </div>
     </div>
 </footer>

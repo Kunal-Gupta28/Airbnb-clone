@@ -1,0 +1,111 @@
+/* Listing Card Styles */
+.listing-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.listing-image {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.listing-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: rgba(13, 110, 253, 0.9);
+    color: white;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+}
+
+.listing-category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.8rem;
+    backdrop-filter: blur(4px);
+}
+
+.listing-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.listing-location {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Category Filter Styles */
+.filter-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 0.5rem 0;
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem;
+    border-radius: 12px;
+}
+
+.category-badge {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    margin: 0.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+}
+
+.category-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #e9ecef;
+    text-decoration: none;
+}
+
+.category-badge.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+/* No Results Styles */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Utility Classes */
+.height {
+    height: 60px;
+}
+
+.tax-info {
+    display: none;
+} 
