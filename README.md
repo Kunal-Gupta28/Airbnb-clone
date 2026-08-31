@@ -4,7 +4,7 @@ A server-rendered travel-listing application for discovering, creating, editing,
 
 ## Live demo
 
-The live app is linked in this repository’s **About** section.
+[Open the live app](https://offends.onrender.com)
 
 ## Features
 
