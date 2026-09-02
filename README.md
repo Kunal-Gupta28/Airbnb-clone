@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1>🌍 WanderLust</h1>
+  <h1> WanderLust</h1>
   <p><b>Full-Stack Travel Discovery, Accommodation Booking & Review Platform</b></p>
 
   <p>
@@ -16,24 +16,24 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 **WanderLust** is a comprehensive full-stack travel listing and hospitality marketplace built with **Node.js**, **Express**, and **MongoDB**. Inspired by platforms like Airbnb, it enables users to explore destinations globally, publish and manage rental listings with image uploads, leave validated star reviews, and interact with geolocation data.
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 🏡 **Listing Management (Full CRUD)**: Create, browse, update, and delete property listings with automated image processing.
-- 🔐 **Authentication & Authorization**: Secure session-based user authentication using **Passport.js** with protected routes and role permissions.
-- ⭐ **Reviews & Rating System**: Leave detailed ratings and user reviews with cascading deletion support.
-- ☁️ **Cloudinary Image Storage**: Seamless cloud media uploads and responsive thumbnail generation.
-- 🛡️ **Schema Validation**: Server-side payload sanitization and schema validation powered by **Joi**.
-- 💬 **Flash Notifications**: Contextual alerts for user feedback using `connect-flash`.
+-  **Listing Management (Full CRUD)**: Create, browse, update, and delete property listings with automated image processing.
+-  **Authentication & Authorization**: Secure session-based user authentication using **Passport.js** with protected routes and role permissions.
+-  **Reviews & Rating System**: Leave detailed ratings and user reviews with cascading deletion support.
+-  **Cloudinary Image Storage**: Seamless cloud media uploads and responsive thumbnail generation.
+-  **Schema Validation**: Server-side payload sanitization and schema validation powered by **Joi**.
+-  **Flash Notifications**: Contextual alerts for user feedback using `connect-flash`.
 
 ---
 
-## 🏗️ Architecture & Directory Structure
+##  Architecture & Directory Structure
 
 ```text
 WanderLust/
@@ -50,7 +50,7 @@ WanderLust/
 
 ---
 
-## 🚀 Quickstart & Local Setup
+##  Quickstart & Local Setup
 
 ### 1. Prerequisites
 - **Node.js**: `v16.0` or higher
@@ -85,13 +85,13 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
-## 🌐 Live Deployment
+##  Live Deployment
 
 * **Live on Render**: [https://offends.onrender.com](https://offends.onrender.com)
 
 ---
 
-## 👤 Author
+##  Author
 
 **Kunal Gupta**
 * Website: [Portfolio](https://portfolio-website-chi-gilt.vercel.app)
